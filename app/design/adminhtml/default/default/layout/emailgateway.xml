@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <emailgateway_adminhtml_setup_index>
+        <reference name="content">
+            <block type="emailgateway/adminhtml_setup" name="setup"/>
+        </reference>
+    </emailgateway_adminhtml_setup_index>
+    <emailgateway_adminhtml_setup_edit>
+        <reference name="js">
+            <block type="emailgateway/adminhtml_setup_edit" name="setup_edit"/>
+        </reference>
+    </emailgateway_adminhtml_setup_edit>
+</layout>

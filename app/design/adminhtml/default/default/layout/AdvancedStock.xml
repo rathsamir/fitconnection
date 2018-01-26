@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+	<!-- Products -->
+
+    <advancedstock_products_grid>
+        <reference name="content">
+            <block type="AdvancedStock/Product_Grid" name="productlist" template="AdvancedStock/Product/Grid.phtml" />
+        </reference>
+    </advancedstock_products_grid>
+
+    <advancedstock_products_edit>
+        <reference name="left">
+            <block type="AdvancedStock/Product_Edit_Tabs" name="producttabs">
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="AdvancedStock/Product_Edit" name="product_edit"></block>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/StockMovement.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/AdvancedStockProduct.js</script>
+            </action>
+        </reference>
+    </advancedstock_products_edit>
+    
+	<!-- Warehouse -->
+
+    <advancedstock_warehouse_grid>
+        <reference name="content">
+            <block type="AdvancedStock/Warehouse_Grid" name="warehousegrid" template="AdvancedStock/Warehouse/Grid.phtml">
+            </block>
+        </reference>
+    </advancedstock_warehouse_grid>
+        
+    <advancedstock_warehouse_new>
+        <reference name="content">
+            <block type="AdvancedStock/Warehouse_New" name="warehousenew" template="AdvancedStock/Warehouse/New.phtml">
+            </block>
+        </reference>
+    </advancedstock_warehouse_new>
+
+    <advancedstock_warehouse_edit>
+        <reference name="left">
+            <block type="AdvancedStock/Warehouse_Edit_Tabs" name="warehouse_tabs">
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="AdvancedStock/Warehouse_Edit" name="warehouse_edit"></block>
+        </reference>
+    </advancedstock_warehouse_edit>
+
+    <!-- Misc -->
+    
+    <advancedstock_serial_grid>
+        <reference name="content">
+            <block type="AdvancedStock/Serial_Grid" name="serialgrid" template="AdvancedStock/Serial/Grid.phtml">
+            </block>
+        </reference>
+    </advancedstock_serial_grid>
+    
+    <advancedstock_stockmovement_grid>
+        <reference name="content">
+            <block type="AdvancedStock/StockMovement_Grid" name="stockmovementgrid" template="AdvancedStock/StockMovement/Grid.phtml">
+            </block>
+        </reference>
+    </advancedstock_stockmovement_grid>
+    
+    <advancedstock_misc_massstockeditor>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/persistantGridControl.js</script>
+            </action>
+        </reference>
+
+        <reference name="content">
+            <block type="AdvancedStock/MassStockEditor_Grid" name="massstockeditor" template="AdvancedStock/MassStockEditor/Grid.phtml">
+            </block>
+        </reference>
+    </advancedstock_misc_massstockeditor>
+    
+    <advancedstock_misc_identifyerrors>
+        <reference name="content">
+            <block type="AdvancedStock/StockError_Grid" name="stockerrorgrid" template="AdvancedStock/StockError/Grid.phtml">
+            </block>
+        </reference>
+    </advancedstock_misc_identifyerrors>
+    
+    <!-- Sales Order -->
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <action method="addTab">
+                <name>sales_order_margins</name>
+                <block>AdvancedStock/Adminhtml_Sales_Order_View_Tab_Margins</block>
+            </action>
+            <action method="addTab">
+                <name>sales_order_payment</name>
+                <block>AdvancedStock/Adminhtml_Sales_Order_View_Tab_Payment</block>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+
+    <!-- Stock transfer -->
+    <advancedstock_transfer_grid>
+        <reference name="content">
+            <block type="AdvancedStock/Transfer_Grid" name="tranfergrid" template="AdvancedStock/Transfer/Grid.phtml">
+            </block>
+        </reference>
+    </advancedstock_transfer_grid>
+    <advancedstock_transfer_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productStockWindow.js</script>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/ScannerReader.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mdn/StockDetails.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+            <action method="addJs">
+                <script>mdn/persistantGridControl.js</script>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="AdvancedStock/Transfer_Edit_Tabs" name="transfer_tabs">
+            </block>
+        </reference>   
+        <reference name="content">
+            <block type="AdvancedStock/Transfer_Edit_TotalQtyscanned" name="transfer_edit_totalqtyscanned" template="AdvancedStock/Transfer/Edit/TotalQtyscanned.phtml"></block>
+            <block type="AdvancedStock/Transfer_Edit" name="transfer_edit"></block>
+        </reference>                     
+    </advancedstock_transfer_edit>    
+    <advancedstock_transfer_notfullyapplicable>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productStockWindow.js</script>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mdn/StockDetails.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="AdvancedStock/Transfer_NotFullyApplicable" name="tranfergrid" template="AdvancedStock/Transfer/NotFullyApplicable.phtml">
+            </block>
+        </reference>
+    </advancedstock_transfer_notfullyapplicable>
+    <!-- Production transfer -->
+    <advancedstock_transferproduction_grid>
+        <reference name="content">
+            <block type="AdvancedStock/TransferProduction_Grid" name="tranferproductiongrid" template="AdvancedStock/TransferProduction/Grid.phtml">
+            </block>
+        </reference>
+    </advancedstock_transferproduction_grid>
+    <advancedstock_transferproduction_baseproductsgrid>
+        <reference name="content">
+            <block type="AdvancedStock/TransferProduction_BaseProduct_Grid" name="tranferproductionbaseproductsgrid" template="AdvancedStock/TransferProduction/BaseProduct/Grid.phtml">
+            </block>
+        </reference>
+    </advancedstock_transferproduction_baseproductsgrid>
+    <advancedstock_transferproduction_new>
+        <reference name="content">
+            <block type="AdvancedStock/TransferProduction_New" name="newtransferproduction" template="AdvancedStock/TransferProduction/New.phtml" />
+        </reference>
+    </advancedstock_transferproduction_new>
+    <advancedstock_transferproduction_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productStockWindow.js</script>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/ScannerReader.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mdn/StockDetails.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+            <action method="addJs">
+                <script>mdn/persistantGridControl.js</script>
+            </action>
+            <action method="addJs">
+                <script>mdn/transferProduction.js</script>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="AdvancedStock/TransferProduction_Edit_Tabs" name="transferproduction_tabs">                      
+            </block>
+        </reference>  
+        <reference name="content">
+            <block type="AdvancedStock/TransferProduction_Edit_TotalQtyscanned" name="transferproduction_edit_totalqtyscanned" template="AdvancedStock/TransferProduction/Edit/TotalQtyscanned.phtml"></block>
+            <block type="AdvancedStock/TransferProduction_Edit" name="transferproduction_edit"></block>
+        </reference>                            
+    </advancedstock_transferproduction_edit>
+    <advancedstock_transferproduction_notfullyapplicable>        
+        <reference name="head">
+            <action method="addJs">
+                <script>mdn/productStockWindow.js</script>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mdn/StockDetails.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/default.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>prototype/windows/themes/alphacube.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="AdvancedStock/TransferProduction_NotFullyApplicable" name="tranferproductiongrid" template="AdvancedStock/TransferProduction/NotFullyApplicable.phtml">
+            </block>
+        </reference>
+    </advancedstock_transferproduction_notfullyapplicable>
+    <advancedstock_sales_return>
+        <reference name="content">
+            <!--block type="AdvancedStock/Sales_Return_FindSku" name="salesreturnfindsku" template="AdvancedStock/Sales/Return/FindSku.phtml" /-->
+            <block type="AdvancedStock/Sales_Return_BulkUpload" name="salesreturnbulkupload" template="AdvancedStock/Sales/Return/BulkUpload.phtml" />
+        </reference>
+    </advancedstock_sales_return>
+    <advancedstock_registers_rg1>
+        <reference name="content">
+            <block type="AdvancedStock/Registers_Rg1" name="rg1" template="AdvancedStock/Registers/Rg1.phtml" />
+        </reference>
+    </advancedstock_registers_rg1>
+    <advancedstock_registers_rg1details>
+        <reference name="content">
+            <block type="AdvancedStock/Registers_Rg1Details" name="rg1details" template="AdvancedStock/Registers/Rg1Details.phtml" />
+        </reference>
+    </advancedstock_registers_rg1details>
+    <advancedstock_registers_rg23>
+        <reference name="content">
+            <block type="AdvancedStock/Registers_Rg23" name="rg1" template="AdvancedStock/Registers/Rg23.phtml" />
+        </reference>
+    </advancedstock_registers_rg23>
+    <advancedstock_registers_rg23details>
+        <reference name="content">
+            <block type="AdvancedStock/Registers_Rg23Details" name="rg23details" template="AdvancedStock/Registers/Rg23Details.phtml" />
+        </reference>
+    </advancedstock_registers_rg23details>
+    <advancedstock_cycliccount_warehouse>
+        <reference name="content">
+            <!--block type="AdvancedStock/Sales_Return_FindSku" name="salesreturnfindsku" template="AdvancedStock/Sales/Return/FindSku.phtml" /-->
+            <block type="AdvancedStock/CyclicCount_WarehouseList" name="warehouselist" template="AdvancedStock/CyclicCount/ImportStockLevel.phtml" />
+        </reference>
+    </advancedstock_cycliccount_warehouse>
+       <!-- Product Inward Upload File -->
+    <advancedstock_transfer_uploadproductinward>
+        <reference name="content">
+            <block type="AdvancedStock/Transfer_Productupload" name="productupload" template="AdvancedStock/Transfer/ProductUploadFile.phtml" />
+        </reference>
+    </advancedstock_transfer_uploadproductinward>
+</layout>

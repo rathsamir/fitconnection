@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <dispatchmanager_adminhtml_dispatchmanager_quickinvoice>
+        <update handle="dispatchmanager_quickinvoice_quickinvoice"/>
+        <reference name="content">
+            <block type="adminhtml/template" name="quickinvoice" template="dispatchmanager/quickinvoice.phtml" />            
+        </reference>        
+    </dispatchmanager_adminhtml_dispatchmanager_quickinvoice>
+   
+    <dispatchmanager_adminhtml_dispatchmanager_verifyitems>
+        <update handle="dispatchmanager_quickinvoice_quickinvoice"/>
+        <reference name="content">
+            <block type="adminhtml/template" name="verifyitems" template="dispatchmanager/verifyitems.phtml" />
+        </reference>
+    </dispatchmanager_adminhtml_dispatchmanager_verifyitems>
+</layout>

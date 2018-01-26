@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <designabuse_adminhtml_designabuse_index>
+        <reference name="content">
+            <block type="designabuse/adminhtml_designabuse" name="designabuse" />
+        </reference>
+    </designabuse_adminhtml_designabuse_index>
+</layout>

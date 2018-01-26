@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inkfruit_Sms>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Inkfruit_Sms>
+    </modules>
+</config> 

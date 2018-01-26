@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inkfruit_Cartalert>
+            <active>true</active>
+            <codePool>local</codePool>
+            <self_name>Abandoned Carts Alerts Pro</self_name>
+            <priority>10060</priority>
+        </Inkfruit_Cartalert>
+    </modules>
+</config>

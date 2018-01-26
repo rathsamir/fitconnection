@@ -1,0 +1,89 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('RG1 Details for #').$this->getChapterheadId() ?></h3></td>
+            
+            <td align="right">
+            	<button onclick="document.location.href='<?php echo $this->getExportUrl($this->getChapterheadId())?>'" class="scalable save" type="button"><span><?php echo $this->__('Export to CSV')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Summary'); ?></h4>
+</div>
+<div class="entry-edit">
+    <div class="grid">
+        <table cellspacing="0" class="data" width="100%">
+            <thead>
+                <tr class="headings">
+                    <th><?php echo $this->__('Chapterhead #'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Sku'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Sub Product Name'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Transfer Id'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Voucher No'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Transfer Date'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Qty'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Total MRP (Rs.)'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Total Excise Amt (Rs.)'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Assessable Amt (Rs.)'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Excise Amount (Rs.)'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Ed Cess Amt (Rs.)'); ?></th>
+                    <th class="a-center"><?php echo $this->__('HEd Cess Amt (Rs.)'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Source Warehouse'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Target Warehouse'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Transfer Type'); ?></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                 
+                $collection = $this->getCumulativeData();
+                $registerHelperObj = Mage::helper('AdvancedStock/Registers');
+                
+                if($collection->getData() == array()) {
+                    echo '<tr><td col="6">No Item</td></tr>';
+                } else {
+                    foreach ($collection as $item) {
+                    	//for($i=0;$i<20;$i++){
+                        echo '<tr>';
+                        echo '<td class="a-center">' . $item->getChapterhead() . '</a></td>';
+                        echo '<td class="a-center">' . $item->getsku() . '</td>';
+                        echo '<td class="a-center">' . $this->getCat3ProductName($item->getsku()) . '</td>';
+                        echo '<td class="a-center">' . $this->getGridEntityId($item->getSmId(),$item->getSmType(),
+                                                       $item->getSmPovoucherId()) . '</td>';
+                        echo '<td class="a-center">' . $this->getGridVoucherNumber($item->getSmId(),$item->getSmType(),
+                                                       $item->getSmPovoucherId()) . '</td>';
+                        echo '<td class="a-center">' . $item->getCreatedAt() . '</td>';
+                        echo '<td class="a-center">' . $item->getqty() . '</td>';
+                        echo $this->getExciseDetails($item->getSmId(),$item->getSmType(),$item->getsku(),$item->getSmPovoucherId());
+                        echo '<td class="a-center">' .  $this->getWarehouseDetails($item->getsm_source_stock()) . '</td>';
+                        echo '<td class="a-center">' .  $this->getWarehouseDetails($item->getsm_target_stock()) . '</td>';
+                        echo '<td class="a-center">' . $item->getSmType() . '</td>';
+                        echo '</tr>';
+                    	//}
+                    }
+                }
+                ?>
+                <tr>
+                    <td colspan="15"> </td>
+                </tr>
+                <tr>
+                    <td colspan="4"> </td>
+                    <td colspan="3"><b>Total</b></td>
+                    <?php
+                    
+                    //echo $this->getChapterheadId()
+                    echo $this->getTotalExciseDetails($this->getChapterheadId());
+                    ?>
+                    <td colspan="3"> </td>
+                </tr>
+            
+            </tbody>
+        </table>
+    </div>
+</div>

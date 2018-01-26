@@ -1,0 +1,34 @@
+10
+
+dir
+6486
+svn://svn.inkfruit.com/inkfruit/trunk/src/magento/skin/adminhtml/default/default/aw_all
+svn://svn.inkfruit.com/inkfruit
+
+
+
+2012-10-01T06:51:17.045292Z
+5242
+saurabh
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+328653d6-7a1a-4464-97bf-f2850209353f
+
+css
+dir
+
+images
+dir
+

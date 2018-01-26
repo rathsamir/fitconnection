@@ -1,0 +1,134 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('RG1 Register')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getResetUrl()?>'" class="scalable reset" type="button"><span><?php echo $this->__('Reset')?></span></button>
+                <button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Search')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form id="edit_form" name="edit_form" action="<?php echo $this->getUrl('*/*/rg1')?>">
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('From'); ?></td>
+                    <td class="input-ele">   
+                    	<input size="8" type="text" class="required-entry" id="from_date" name="from_date" value="<?php echo $this->getFromDate(); ?>">
+                    	<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_calendar_from_date" />
+				        <script type="text/javascript">
+			                Calendar.setup({
+			                    inputField : 'from_date',
+			                    ifFormat : '%Y-%m-%e',
+			                    button : 'img_calendar_from_date',
+			                    align : 'Bl',
+			                    singleClick : true
+			                });
+		                </script>	
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('To'); ?></td>
+                    <td class="input-ele">   
+                    	<input size="8" type="text" class="required-entry" id="to_date" name="to_date" value="<?php echo $this->getToDate(); ?>">
+                    	<img src="<?php echo $this->getSkinUrl('images/grid-cal.gif') ?>" class="v-middle" id="img_calendar_to_date" />
+				        <script type="text/javascript">
+			                Calendar.setup({
+			                    inputField : 'to_date',
+			                    ifFormat : '%Y-%m-%e',
+			                    button : 'img_calendar_to_date',
+			                    align : 'Bl',
+			                    singleClick : true
+			                });
+		                </script>	
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+</div>
+</form>
+<?php
+$collection = $this->getChapterheads();
+if(!empty($collection)) {
+?>
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend">
+        <div>
+            <div align="left">
+                <?php echo $this->__('Summary'); ?>
+            </div>
+            <div align="right">
+                <button onclick="document.location.href='<?php echo $this->getSummaryExportUrl()?>'" class="scalable save a-right" type="button"><span><?php echo $this->__('Export Summary to CSV')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getExportUrl()?>'" class="scalable save a-right" type="button"><span><?php echo $this->__('Export all to CSV')?></span></button>
+            </div>
+        </div>
+    </h4>
+</div>
+
+<div class="entry-edit">
+    <div class="grid">
+        <table cellspacing="0" class="data" width="100%">
+            <thead>
+                <tr class="headings">
+                    <th><?php echo $this->__('Chapterhead #'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Opening'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Inward'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Total GR'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Outward (G2G)'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Outward (IFB + BRT)'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Closing'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Total MRP value'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Assessable value'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Excise value'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Total Excise value'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Edu Cess value'); ?></th>
+                    <th class="a-center"><?php echo $this->__('HEdu Cess value'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Action'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                
+                foreach ($collection as $item) {
+                	
+                    echo '<tr>';
+                    
+                    echo '<td>' . $item['chapterhead'] . '</td>';
+//                    echo '<td><a href="' . $this->getUrl('*/*/rg1details', array('chptrhd_id' => $item['chapterhead'],
+//                    'from_date' => $this->getFromDate(),'to_date'=> $this->getToDate())) . '">' . $item['chapterhead'] . '</a></td>';
+                    
+                    
+                    if(!isset($item['opening']))
+                        $item['opening'] = 0;
+                    
+                    if(!isset($item['closing']))
+                        $item['closing'] = 0;
+                    
+                    echo '<td class="a-center">' . $item['opening'] . '</td>';
+                    echo '<td class="a-center">' . $item['inward'] . '</td>';
+                    echo '<td class="a-center">' . $item['gr'] . '</td>';
+                    echo '<td class="a-center">' . $item['outward'] . '</td>';
+                    echo '<td class="a-center">' . $item['out_brt_ifb'] . '</td>';
+                    echo '<td class="a-center">' . $item['closing'] . '</td>';
+                    echo $this->getTotalExciseDetails($item['chapterhead']);
+                    ?><td>
+                        <button onclick="document.location.href='<?php echo $this->getChapterheadExportUrl($item['chapterhead'])?>'" class="scalable save" type="button"><span><?php echo $this->__('Export to CSV')?></span></button>
+                    </td>
+                        
+                    <?php
+                    
+                    echo '</tr>';
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<?php
+}
+?>

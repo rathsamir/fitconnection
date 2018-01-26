@@ -1,0 +1,33 @@
+
+<form method="POST" enctype="multipart/form-data" action="<?php echo Mage::getUrl('*/*/ProductUpload', array()); ?>" id="form_delivery">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <input type="hidden" name="st_id" value="<?php echo $this->getTransfer()->getId(); ?>">
+    <input type="hidden" name="data" id="data">
+    <div class="entry-edit">
+            
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Upload Product For the Current Transfer'); ?></h4> 
+	    </div>
+	    
+		<fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+               
+                <tr>
+                        <td class="label"><label for="import_file">Select File to Import <span class="required">*</span></label></td>
+                        <td width="30">&nbsp;</td>
+                        <td class="value">
+                            <input type="file" id="import_file" name="import_file" value="" title="Select File to Import" type="file" class=" required-entry"/>
+                        </td>
+                </tr>
+
+                <tr>
+                        <td class="label"><label for="import_file">&nbsp;<span>&nbsp;</span></label></td>
+                        <td width="30">&nbsp;</td>
+                        <td class="value">
+                            <input id="button1" name="button1" value="SUBMIT"  type="SUBMIT" />
+                        </td>
+                </tr>
+            </table>
+        </fieldset>
+        </div>
+</form>

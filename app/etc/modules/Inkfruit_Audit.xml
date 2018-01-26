@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inkfruit_Audit>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Sales/>
+            </depends>
+        </Inkfruit_Audit>
+    </modules>
+</config> 

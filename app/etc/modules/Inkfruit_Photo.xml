@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inkfruit_Photo>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Inkfruit_Photo>
+    </modules>
+</config> 

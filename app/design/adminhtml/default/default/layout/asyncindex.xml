@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <adminhtml_process_list>
+        <reference name="content">
+            <block type="asyncindex/adminhtml_asyncControl" name="asyncindex" template="asyncindex/asyncindex.phtml">
+            </block>
+        </reference>
+    </adminhtml_process_list>
+</layout>

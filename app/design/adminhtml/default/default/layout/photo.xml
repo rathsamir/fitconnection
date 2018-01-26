@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <photo_adminhtml_photo_index>
+        <reference name="content">
+            <block type="photo/adminhtml_photo" name="photo" />
+        </reference>
+    </photo_adminhtml_photo_index>
+</layout>

@@ -1,0 +1,55 @@
+             
+<script>
+    
+//************************************************************************************************************************************************
+//
+function createVoucher(voucherType)
+{
+	
+	//met a jour dans la page
+	var poNum = document.getElementById('po_num_<?php echo $this->getVoucherType();?>').value;
+	$('button_voucher_<?php echo $this->getVoucherType();?>').addClassName('disabled').writeAttribute('disabled', 'disabled');	
+	//sauvegarde le prix en ajax
+	var request = new Ajax.Request("<?php echo Mage::getBaseUrl(); ?>Purchase/Orders/createVoucher/",
+	    {
+	        method:'post',
+                parameters: {
+                                po_num: poNum,
+                                voucher_type: voucherType
+                            },
+	        onSuccess: function (transport)
+	        			{
+							//win.destroy();
+							//$(<?//php echo $this->getDropdownId();?>).replace(transport.responseText);
+                                                        $('<?php echo $this->getDropdownId();?>').innerHTML = transport.responseText;
+                                                        $('messages').innerHTML = '<ul class="messages"><li class="success-msg"><ul><li><span>The New Voucher has been generated and selected.</span></li></ul></li></ul>';
+                                                        $('button_voucher_<?php echo $this->getVoucherType();?>').removeClassName('disabled').writeAttribute('disabled', null);
+	        			},
+	        onFailure: function () 
+	        			{
+	        				alert('error');
+                                                $('button_voucher_<?php echo $this->getVoucherType();?>').removeClassName('disabled').writeAttribute('disabled', null);
+							//win.destroy();
+							//document.getElementById('div_dlg_pricer').style.display = 'none';
+	        			}
+           // parameters: Form.serialize(document.getElementById('div_dlg_pricer'))
+	    }
+    );
+	
+}
+</script>
+        <input type="hidden" id="po_num_<?php echo $this->getVoucherType();?>" name="po_num_<?php echo $this->getVoucherType();?>" value="<?php echo $this->getOrder()->getPoNum(); ?>">
+        <td><?php echo $this->__('Voucher No:'); ?></td>
+        <td width="30">&nbsp;</td>
+        <td><?php echo $this->getVouchersAsCombo($this->getDropdownId()); ?></td>
+        
+        <?php
+        
+        if(!$this->isComplete())
+        {
+            ?>
+
+            <td class="a-right"><button id="button_voucher_<?php echo $this->getVoucherType();?>" name="button_voucher_<?php echo $this->getVoucherType();?>" onclick="createVoucher('<?php echo $this->getVoucherType()?>');" class="scalable a-right" type="button"><span><?php echo $this->__('Generate New Voucher') ?></span></button></td>
+        <?php 
+        }
+        ?>

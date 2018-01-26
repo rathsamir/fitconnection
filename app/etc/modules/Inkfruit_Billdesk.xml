@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inkfruit_Billdesk>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Inkfruit_Billdesk>
+    </modules>
+</config> 

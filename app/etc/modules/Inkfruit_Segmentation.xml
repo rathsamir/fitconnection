@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Inkfruit_Segmentation>
+			<active>true</active>
+			<codePool>local</codePool>
+                        <depends>
+                            <AW_Marketsuite/>
+                        </depends>
+		</Inkfruit_Segmentation>
+	</modules>
+</config>

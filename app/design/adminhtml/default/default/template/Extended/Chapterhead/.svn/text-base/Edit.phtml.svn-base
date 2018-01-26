@@ -1,0 +1,53 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Edit Chapter Head')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getBackUrl()?>'" class="scalable back" type="button"><span><?php echo $this->__('Back')?></span></button>
+                <button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Save')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getDeleteUrl()?>'" class="scalable delete" type="button"><span><?php echo $this->__('Delete')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form id="edit_form" method="POST" name="edit_form" action="<?php echo $this->getUrl('*/*/Save')?>">
+<input type="hidden" id="echm_id" name="Id" value="<?php echo $this->getChapterHead()->getId(); ?>">
+<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label">Id</td>
+                    <td class="input-ele"><?php echo $this->getChapterHead()->getId(); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Chapterhead'); ?></td>
+                    <td class="input-ele"><input type="text" name="echm_chapter_head" id="echm_chapter_head" value="<?php echo $this->getChapterHead()->getEchmChapterHead(); ?>"/></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Assessable Value'); ?></td>
+                    <td class="input-ele"><input type="text" name="echm_assessable_value" id="echm_assessable_value" value="<?php echo $this->getChapterHead()->getEchmAssessableValue(); ?>"/></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Excise Rate'); ?></td>
+                    <td class="input-ele"><input type="text" name="echm_excise_rate" id="echm_excise_rate" value="<?php echo $this->getChapterHead()->getEchmExciseRate(); ?>"/></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Edu Cess'); ?></td>
+                    <td class="input-ele"><input type="text" name="echm_edu_cess" id="echm_edu_cess" value="<?php echo $this->getChapterHead()->getEchmEduCess(); ?>"/></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Higher Edu Cess'); ?></td>
+                    <td class="input-ele"><input type="text" name="echm_higher_edu_cess" id="echm_higher_edu_cess" value="<?php echo $this->getChapterHead()->getEchmHigherEduCess(); ?>"/></td>
+                </tr>
+            </table>
+        </fieldset>
+
+</div>
+</form>
+
+</div>

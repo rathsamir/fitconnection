@@ -1,0 +1,33 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-account" ><?php echo $this->__('Import Cyclic Count Stock levels For today'); ?></h4>
+
+    </div>
+    <div class="entry-edit">
+
+        <form method="POST" enctype="multipart/form-data" action="<?php echo Mage::getUrl('*/*/ImportStockLevel', array()); ?>">
+            <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <th width="200" align="center"><?php echo $this->__('Warehouse'); ?></th>
+                    <td class="input-ele"><?php echo $this->getWarehousesAsCombo(); ?></td>
+                </tr>
+          
+                <tr>
+                    <th width="200" align="center"><?php echo $this->__('File'); ?></th>
+                    <th><input type="file" name="import_stock" id="import_stock"></th>
+                </tr>
+                <tr>
+                    <th width="200" align="center"><?php echo $this->__('Stock movement description'); ?><span class="required">*</span></th>
+                    <th><input type="text" class="required-entry input-text" name="stock_movement_caption" id="stock_movement_caption"></th>
+                </tr>
+                <tr>
+                    <th width="200" align="center"></th>
+                    <td colspan="2"><input type="submit" value="<?php echo $this->__('Import'); ?>"></td>
+                </tr>
+
+            </table>
+        </form>
+
+    </div>
+</div>

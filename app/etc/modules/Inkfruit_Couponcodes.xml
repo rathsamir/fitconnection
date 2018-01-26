@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inkfruit_Couponcodes>
+            <active>true</active>
+            <codePool>local</codePool>
+            <self_name>Complimentary Coupon Codes</self_name>
+            <priority>10080</priority>
+        </Inkfruit_Couponcodes>
+    </modules>
+</config>

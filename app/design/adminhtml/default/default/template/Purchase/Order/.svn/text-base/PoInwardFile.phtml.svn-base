@@ -1,0 +1,35 @@
+
+<form method="POST" enctype="multipart/form-data" action="<?php echo $this->getPoInwardFilePostUrl(); ?>" id="form_delivery">
+    <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <input type="hidden" name="po_id" value="<?php echo $this->getOrder()->getId(); ?>">
+    <input type="hidden" name="data" id="data">
+    <div class="entry-edit">
+            
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Upload PO Inward File'); ?></h4> 
+	    </div>
+	    
+		<fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+               
+                <tr>
+                        <td class="label"><label for="import_file">Select File to Import <span class="required">*</span></label></td>
+                        <td width="30">&nbsp;</td>
+                        <td class="value">
+                            <input id="import_file" name="import_file" value="" title="Select File to Import" type="file" class=" required-entry"/>
+                        </td>
+                </tr>
+                <tr>
+                        <?php echo $this->getPurchaseOrderVoucherBlock('add_povoucher_id_supply','supply'); ?>
+                </tr>
+                <tr>
+                        <td class="label"><label for="import_file">&nbsp;<span>&nbsp;</span></label></td>
+                        <td width="30">&nbsp;</td>
+                        <td class="value">
+                            <input id="button1" name="button1" value="SUBMIT"  type="SUBMIT" />
+                        </td>
+                </tr>
+            </table>
+        </fieldset>
+        </div>
+</form>

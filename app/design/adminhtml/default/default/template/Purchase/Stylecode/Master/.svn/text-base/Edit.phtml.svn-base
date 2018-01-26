@@ -1,0 +1,89 @@
+<div class="entry-edit">
+
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo$this->__('Edit Style Code') ?></h3></td>
+                <td align="right">
+                    <button onclick="document.location.href='<?php echo $this->getBackUrl() ?>'" class="scalable back" type="button"><span><?php echo $this->__('Back') ?></span></button>
+                    <button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Save') ?></span></button>
+                    <button onclick="document.location.href='<?php echo $this->getDeleteUrl() ?>'" class="scalable delete" type="button"><span><?php echo $this->__('Delete') ?></span></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <form id="edit_form" method="POST" name="edit_form" action="<?php echo $this->getUrl('*/*/Save') ?>">
+        <input type="hidden" id="echm_id" name="Id" value="<?php echo $this->getStylecode()->getId(); ?>">
+        <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+        <div class="entry-edit">
+
+            <fieldset id="my-fieldset">
+                <table cellspacing="0" class="form-list">
+                    <tr>
+                        <td class="label">Id</td>
+                        <td class="input-ele"><?php echo $this->getStylecode()->getId(); ?></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><?php echo $this->__('Style Code'); ?></td>
+                        <td class="input-ele"><input type="text" name="stylecode_name" id="stylecode_name" value="<?php echo $this->getStylecode()->getStylecodeName(); ?>"/></td>
+                    </tr>
+
+                    <tr>
+                        <td class="label"><?php echo $this->__('Category Level 3'); ?></td>
+                        <td class="input-ele"><?php echo $this->getLevel3Names(); ?></td>
+
+                    </tr>
+
+                </table>
+            </fieldset>
+
+        </div>
+    </form>
+
+</div>
+
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Associated Products Info'); ?></h4>
+</div>
+<div class="entry-edit">
+    <div class="grid">
+        <table cellspacing="0" class="data" width="100%">
+            <thead>
+                <tr class="headings">
+                    <th class="a-center"><?php echo $this->__('Sku'); ?></th>
+                    <th><?php echo $this->__('Print Size'); ?></th>
+                    <th class="a-center"><?php echo $this->__('MRP'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Categories'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Products'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Subproducts'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Style Code'); ?></th>
+                    <th><?php echo $this->__('Shade'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                //Affiche les mouvements de stock
+
+                $collection = $this->getProductInfoByStyleCode($this->getStylecode()->getStylecodeName());
+                $categories = Mage::helper('AdvancedStock')->getCategoriesFrmStyleCode($this->getStylecode()->getStylecodeName());
+
+                foreach ($collection as $productInfo) {
+                    $item = Mage::getModel('catalog/product')->load($productInfo->getEntityId());
+                    echo '<tr>';
+                    echo '<td class="a-center">' . $item->getsku() . '</td>';
+                    echo '<td>' . $item->getPrintSize() . '</td>';
+                    echo '<td class="a-center">' . $item->getPrice() . '</td>';
+                    echo '<td class="a-center">' . $categories['1'] . '</td>';
+                    echo '<td class="a-center">' . $categories['2'] . '</td>';
+                    echo '<td class="a-center">' . $categories['3'] . '</td>';
+                    echo '<td class="a-center">' . $this->getStylecode()->getStylecodeName() . '</td>';
+                    echo '<td>' . $item->getShade() . '</td>';
+                    echo '</tr>';
+                }
+                ?>
+
+            </tbody>
+        </table>
+    </div>
+</div>

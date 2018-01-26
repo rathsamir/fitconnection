@@ -1,0 +1,110 @@
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Sales Return')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getResetUrl()?>'" class="scalable reset" type="button"><span><?php echo $this->__('Reset')?></span></button>
+                <button onclick="validateSkuInput();" class="scalable save" type="button"><span><?php echo $this->__('Search')?></span></button>
+                <!-- button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Search')?></span></button-->
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form id="edit_form" name="edit_form" action="<?php echo $this->getUrl('*/*/Return')?>">
+<div class="entry-edit">
+    
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('SKU'); ?> <span class="required">*</span></td>
+                    
+                    <td class="input-ele">
+                    	   
+                        <input type="text" name="returned_sku" class="input-text required-entry" id="returned_sku" value="<?php echo $this->getSku() ?>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Customers'); ?> <span class="required">*</span></td>
+                    <td class="input-ele">   
+                    	<select id = "returned_customer_entity" name="returned_customer_entity">
+                    		<option value="">Please select a customer</option>	
+	                    	<?php 
+	                    	$customers = $this->getCustomers();
+	                    	$returned_customer_entity = isset($_REQUEST['returned_customer_entity']) ? $_REQUEST['returned_customer_entity'] : '';
+	                    	foreach($customers as $customer){
+	                    		?>
+	                    		<option <?php echo ($customer->getEntityId() == $returned_customer_entity) ? 'selected="selected"' : ''
+	                    			?> value="<?php echo $customer->getEntityId();?>"><?php echo $customer->getName();?></option>
+	                    		<?php 
+	                    	}
+                    	?>
+                    	</select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+</div>
+</form>
+
+<script>
+function validateSkuInput(){
+	if(document.getElementById('returned_sku').value == ''){
+		alert('Sku field cannot be empty');
+		return false;
+	}
+
+	if(document.getElementById('returned_customer_entity').value == ''){
+		alert('Please select a whole sale customer');
+		return false;
+	}
+
+	document.getElementById('edit_form').submit();
+	
+}
+</script>
+
+<?php
+$collection = $this->getOrders();
+if($collection->getData() != array()) {
+?>
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Deliveries'); ?></h4>
+</div>
+<div class="entry-edit">
+    <div class="grid">
+        <table cellspacing="0" class="data" width="100%">
+            <thead>
+                <tr class="headings">
+                    <th><?php echo $this->__('Order #'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Order Date'); ?></th>
+<!--                    <th class="a-center"><?php echo $this->__('Warehouse'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Qty'); ?></th>
+                    <th><?php echo $this->__('Description'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Voucher'); ?></th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                //Affiche les mouvements de stock
+                foreach ($collection as $item) {
+                    echo '<tr>';
+                    echo '<td><a href="' . $this->getUrl('adminhtml/sales_order/view', array('order_id' => $item->getId())) . '">' . $item->getincrement_id() . '</a></td>';
+                    echo '<td class="a-center">' . $item->getcreated_at() . '</td>';
+//                    echo '<td>' . $item->getTargetWarehouseName()->getstock_name() . '</td>';
+//                    echo '<td class="a-center">' . $item->getsm_qty() . '</td>';
+//                    echo '<td>' . $item->getsm_description() . '</td>';
+//                    echo '<td class="a-center">' . Mage::getModel('Purchase/Order_PoVoucher')->load($item->getsm_povoucher_id())->getVoucherTextId() . '</td>';
+                    echo '</tr>';
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<?php
+}
+?>

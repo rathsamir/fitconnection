@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inkfruit_Shippingcarriers>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Inkfruit_Shippingcarriers>
+    </modules>
+</config> 

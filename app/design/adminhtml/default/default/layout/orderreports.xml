@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <orderreports_adminhtml_orderreports_index>
+        <reference name="content">
+            <block type="orderreports/adminhtml_orderreports" name="orderreports" />
+        </reference>
+    </orderreports_adminhtml_orderreports_index>
+</layout>

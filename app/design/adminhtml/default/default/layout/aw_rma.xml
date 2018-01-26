@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <awrma_admin_adminhtml_types_list>
+        <reference name="content">
+            <block type="awrma/adminhtml_types" name="awrma.adminhtml.types" />
+        </reference>
+    </awrma_admin_adminhtml_types_list>
+
+    <awrma_admin_adminhtml_status_list>
+        <reference name="content">
+            <block type="awrma/adminhtml_status" name="awrma.adminhtml.status" />
+        </reference>
+    </awrma_admin_adminhtml_status_list>
+
+    <awrma_admin_adminhtml_rma_list>
+        <reference name="content">
+            <block type="awrma/adminhtml_rma" name="awrma.adminhtml.rma" />
+        </reference>
+    </awrma_admin_adminhtml_rma_list>
+
+    <awrma_admin_adminhtml_rma_listpending>
+        <reference name="content">
+            <block type="awrma/adminhtml_pendingrma" name="awrma.adminhtml.rma" />
+        </reference>
+    </awrma_admin_adminhtml_rma_listpending>
+
+    <awrma_admin_adminhtml_rma_edit>
+        <reference name="head">
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+            <action method="addJs"><script>aw_rma.js</script></action>
+        </reference>
+    </awrma_admin_adminhtml_rma_edit>
+    <awrma_admin_adminhtml_rma_new>
+        <reference name="head">
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+        </reference>
+    </awrma_admin_adminhtml_rma_new>
+    <awrma_admin_adminhtml_rma_stockreturn>
+        <reference name="content">
+            <block type="awrma/adminhtml_rma_stock" name="rma_stock">
+                <block type="awrma/adminhtml_rma_stock_form" template="sales/order/replacement/create/form.phtml" name="form">
+<!--                <block type="awrma/adminhtml_rma_stock_tabs_return" name="data" template="sales/order/replacement/create/data.phtml">-->
+                    <block type="awrma/adminhtml_rma_items" name="order_items" template="sales/order/replacement/create/items.phtml">
+                        <action method="addItemRender"><type>default</type><block>awrma/adminhtml_rma_items</block><template>sales/order/replacement/create/items/renderer/default.phtml</template></action>
+                        <action method="addColumnRender"><column>qty</column><block>adminhtml/sales_items_column_qty</block><template>sales/items/column/qty.phtml</template></action>
+                    </block>
+                </block>
+            </block>
+        </reference>
+<!--        <reference name="left">
+            <block type="awrma/adminhtml_rma_stock_tabs_return" name="rma_stock_tabs">
+                <block type="awrma/adminhtml_rma_stock_form" template="sales/order/replacement/create/form.phtml" name="form">
+                <block type="awrma/adminhtml_rma_stock_tabs_return" name="data" template="sales/order/replacement/create/data.phtml">
+                    <block type="slandsbek_simpleorderexport/sales_order_replacement_items" name="order_items" template="sales/order/replacement/create/items.phtml">
+                        <action method="addItemRender"><type>default</type><block>slandsbek_simpleorderexport/sales_order_replacement_items</block><template>sales/order/replacement/create/items/renderer/default.phtml</template></action>
+                        <action method="addColumnRender"><column>qty</column><block>adminhtml/sales_items_column_qty</block><template>sales/items/column/qty.phtml</template></action>
+                    </block>
+                </block>
+                <action method="addTab"><name>order_items</name><block>rma_stock_tabs</block></action>
+            </block>
+        </reference>-->
+    </awrma_admin_adminhtml_rma_stockreturn>
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <block type="awrma/adminhtml_sales_order_view_tabs_requests" name="awrma_requests"/>
+            <action method="addTab"><name>Requests</name><block>awrma_requests</block></action>
+        </reference>
+    </adminhtml_sales_order_view>
+    <awrma_admin_adminhtml_replacement_index>
+        <update handle="adminhtml_sales_order_create_index" />
+        <reference name="data">
+            <block type="awrma/adminhtml_sales_data" template="aw_rma/sales/relayinfo.phtml" name="relayinfo"></block>
+        </reference>
+    </awrma_admin_adminhtml_replacement_index>
+    <awrma_admin_adminhtml_creditmemo_new>
+        <update handle="adminhtml_sales_order_creditmemo_new" />
+    </awrma_admin_adminhtml_creditmemo_new>
+    <awrma_admin_adminhtml_rma_updateandprint>
+        <reference name="head">
+            <action method="addCss"><stylesheet>aw_rma/css/rma.css</stylesheet></action>
+            <action method="addJs"><script>aw_rma.js</script></action>
+        </reference>
+    </awrma_admin_adminhtml_rma_updateandprint>
+    
+</layout>

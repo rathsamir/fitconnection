@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inkfruit_Icicidebit>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Sales/>
+            </depends>
+        </Inkfruit_Icicidebit>
+    </modules>
+</config> 

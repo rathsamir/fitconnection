@@ -1,0 +1,232 @@
+<?php
+$collection = $this->getOrders();
+?>
+<script>
+var salesReturn = {};
+salesReturn.data = <?php echo Zend_Json::encode(((empty($collection) ? null : $collection))) ?>;
+salesReturn.toSendData = {};
+salesReturn.queue = [];
+
+salesReturn.getOrders = function() {
+    var orders = {};
+    if(salesReturn.data) {
+        for(var i in salesReturn.data) {
+            for(var j in salesReturn.data[i]) {
+                orders[i] = orders[i] ? orders[i]+','+j : j;
+            }
+        }
+    }
+    return orders;
+};
+
+salesReturn.createReturns = function () {
+    if($('return_voucher_text_id').value) {
+        salesReturn.processData();
+        salesReturn.saveRefund();
+    } else {
+        salesReturn.createVoucher();
+    }
+};
+
+salesReturn.processData = function() {
+	if(salesReturn.data) {
+        for(var i in salesReturn.data) {
+            salesReturn.toSendData[i]={};
+            if (salesReturn.data[i].length === 0) continue;
+            for(var j in salesReturn.data[i]) {
+                var tmp = {};
+                tmp['creditmemo[items]['+salesReturn.data[i][j]['item_id']+'][back_to_stock]'] = salesReturn.data[i][j]['back_to_stock'];
+                tmp['creditmemo[items]['+salesReturn.data[i][j]['item_id']+'][qty]'] = salesReturn.data[i][j]['qty'];
+                tmp['creditmemo[do_offline]'] = salesReturn.data[i][j]['do_offline'];
+                tmp['creditmemo[comment_text]'] = $('order['+i+']['+j+'][comment_text]').value;
+                tmp['creditmemo[shipping_amount]'] = $('order['+i+']['+j+'][shipping_amount]').value;
+                tmp['creditmemo[adjustment_positive]'] = $('order['+i+']['+j+'][adjustment_positive]').value;
+                tmp['creditmemo[adjustment_negative]'] = $('order['+i+']['+j+'][adjustment_negative]').value;
+                tmp['creditmemo[preparation_warehouse]'] = $('order['+i+']['+j+'][preparation_warehouse]').value;
+                tmp['creditmemo[return_voucher_increment_id]'] = $('return_voucher_text_id').value;
+                tmp['creditmemo[return_voucher_item_sku]'] = i;
+                tmp['creditmemo[bypass_sync]'] = 1;
+                salesReturn.toSendData[i][j] = tmp;
+                
+                salesReturn.addTasksToQueue(i, j, tmp);
+            }
+        }
+    }
+};
+
+salesReturn.createVoucher = function() {
+    var url = '<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/*/createReturnVoucher') ?>';
+    var orders = salesReturn.getOrders();
+    var data = {};
+    for(var i in orders) {
+        data['orders['+i+']'] = orders[i];
+    }
+    data['transfer_type_excised'] = $('transfer_type_excised').value;
+    new Ajax.Request(url, {
+        method: 'post',
+        parameters: data,
+        onSuccess: function(transport) {
+            try {
+                var response = transport.responseText;
+                response = response.evalJSON();
+                $('display_return_voucher_id').update(' (for '+response.voucher_text_id+')');
+                $('return_voucher_text_id').value = response.voucher_text_id;
+            } catch(e) {}
+            salesReturn.processData();
+            salesReturn.saveRefund();
+        }
+    });
+};
+
+salesReturn.addTasksToQueue = function(sku, order_id, data) {
+    var url = '<?php echo Mage::getSingleton('adminhtml/url')->getUrl('adminhtml/sales_order_creditmemo/save') ?>';
+    url = url + 'order_id/'+order_id;
+    salesReturn.queue.push({'url':url, 'sku':sku, 'order_id':order_id, 'data':data});
+};
+
+salesReturn.saveRefund = function() {
+    if(salesReturn.queue.length == 0) return;
+    var process = salesReturn.queue.shift();
+    new Ajax.Request(process.url, {
+        method: 'post',
+        parameters: process.data,
+        onSuccess: function(transport) {
+            try {
+                var response = transport.responseText;
+                response = response.evalJSON();
+                var className = (response.code && (response.code == 'success')) ? 'success-msg' : 'error-msg';
+                $('order['+process.sku+']['+process.order_id+'][result]').update('<div class="'+className+'" style="height:35px;">&nbsp;</div>');
+            } catch(e) {}
+            salesReturn.saveRefund();
+        },
+        onFailure: function() {
+            salesReturn.saveRefund();
+        }
+    });
+};
+
+</script>
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Sales Return')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getResetUrl()?>'" class="scalable reset" type="button"><span><?php echo $this->__('Reset')?></span></button>
+                <button onclick="$('edit_form').submit();disableElements('upload')" class="scalable upload" type="button"><span><?php echo $this->__('Upload File')?></span></button>
+                <?php
+                if(!empty($collection)) {
+                ?>
+                <button onclick="salesReturn.createReturns();disableElements('save')" class="scalable save" type="button"><span><?php echo $this->__('Confirm Orders')?></span></button>
+                <button onclick="document.location.href='<?php echo $this->getResetUrl()?>'" class="scalable cancel" type="button"><span><?php echo $this->__('Cancel')?></span></button>
+                <?php
+                }
+                ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form enctype="multipart/form-data" method="POST" id="edit_form" name="edit_form" action="<?php echo $this->getUrl('*/*/Return')?>">
+<input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Import Data'); ?></h4>
+    </div>
+    
+    <fieldset id="my-fieldset">
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><?php echo $this->__('Select File'); ?></td>
+                <td class="input-ele">
+                    <input type="file" name="file_upload" class="input-text" id="file_upload" value=""/>
+                    <p class="note">
+                        <span>Select csv file with return details.</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Voucher Id'); ?></td>
+                <td class="input-ele">
+                    <input type="text" id="return_voucher_text_id" name="return_voucher_text_id" value="<?php echo $this->getVoucherIncrementId() ?>"/>
+                    <p class="note">
+                        <span>Voucher ID is AUTOMATICALLY generated once orders are confirmed. <br />If specified then it will update the particular voucher.</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+</div>
+    
+<?php
+if(!empty($collection)) {
+
+$bItemFound = false;
+?>
+<div class="entry-edit">
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Sales Orders'); ?><span id="display_return_voucher_id"></span></h4>
+</div>
+<div class="orders_fetched">    
+    <div class="grid">
+        <table cellspacing="0" class="data" width="100%">
+            <thead>
+                <tr class="headings">
+                    <th class="a-center"><?php echo $this->__('Sku'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Order#'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Order Created Date'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Warehouse'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Qty'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Refund Amount'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Shipping Amount'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Adjustment Positive'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Adjustment Negative'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Comments'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Status'); ?></th>
+                    <th class="a-center"><?php echo $this->__('Result'); ?></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                //Affiche les mouvements de stock
+                foreach ($collection as $sku => $details) {
+                    foreach($details as $orderId => $info) {
+                        $bItemFound = true;
+                        $transfer_type_excised = (!empty($info['transfer_type_excised']) ? true : false);
+                        echo '<tr>';
+                        //echo '<td><a href="' . $this->getUrl('adminhtml/sales_order/view', array('order_id' => $item->getId())) . '">' . $item->getincrement_id() . '</a></td>';
+                        echo '<td class="a-center">' . $sku . '</td>';
+                        echo '<td class="a-center">' . (isset($info['increment_id']) ? $info['increment_id'] : '') . '</td>';
+                        echo '<td class="a-center">' . (isset($info['created_at']) ? $info['created_at'] : '') . '</td>';
+                        echo '<td class="a-center">' . (isset($info['warehouse']) ? $info['warehouse'] : '') . '<input type="hidden" name="order['.$sku.']['.$orderId.'][preparation_warehouse]" id="order['.$sku.']['.$orderId.'][preparation_warehouse]" value="' . (isset($info['preparation_warehouse']) ? $info['preparation_warehouse'] : 0) . '"/></td>';
+                        echo '<td class="a-center">' . (isset($info['qty']) ? $info['qty'] : '') . '</td>';
+                        echo '<td class="a-center">' . (isset($info['refund_amount']) ? $info['refund_amount'] : 0) . '</td>';
+                        echo '<td class="a-center"><input size="5" type="text" name="order['.$sku.']['.$orderId.'][shipping_amount]" id="order['.$sku.']['.$orderId.'][shipping_amount]" value="' . (isset($info['shipping_amount']) ? $info['shipping_amount'] : 0) . '"/></td>';
+                        echo '<td class="a-center"><input size="5" type="text" name="order['.$sku.']['.$orderId.'][adjustment_positive]" id="order['.$sku.']['.$orderId.'][adjustment_positive]" value="' . (isset($info['adjustment_positive']) ? $info['adjustment_positive'] : 0) . '"/></td>';
+                        echo '<td class="a-center"><input size="5" type="text" name="order['.$sku.']['.$orderId.'][adjustment_negative]" id="order['.$sku.']['.$orderId.'][adjustment_negative]" value="' . (isset($info['adjustment_negative']) ? $info['adjustment_negative'] : 0) . '"/></td>';
+                        echo '<td class="a-center"><textarea name="order['.$sku.']['.$orderId.'][comment_text]" id="order['.$sku.']['.$orderId.'][comment_text]">' . (isset($info['comment_text']) ? $info['comment_text'] : 0) . '</textarea></td>';
+                        echo '<td class="a-center">' . (isset($info['status']) ? $info['status'] : '') . '</td>';
+                        echo '<td class="a-center"><div id="order['.$sku.']['.$orderId.'][result]"></div></td>';
+                        echo '</tr>';
+                    }
+                }
+                echo '<input type="hidden" name="transfer_type_excised" id="transfer_type_excised" value="'.$transfer_type_excised.'"/>';
+                if(!$bItemFound) {
+                    echo '<tr>';
+                    echo '<td class="empty-text a-center" colspan="15">' . $this->__('No records found') . '</td>';
+                    echo '</tr>';
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<?php
+}
+?>
+</form>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <deletecustomer_adminhtml_deletecustomer_index>
+        <reference name="content">
+            <block type="deletecustomer/adminhtml_deletecustomer" name="deletecustomer" />
+        </reference>
+    </deletecustomer_adminhtml_deletecustomer_index>
+
+    <deletecustomer_adminhtml_deletecustomer_grid>
+            <block type="deletecustomer/adminhtml_deletecustomer_grid" name="deletecustomer" />
+    </deletecustomer_adminhtml_deletecustomer_grid>
+</layout>

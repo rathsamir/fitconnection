@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <ezzoom_adminhtml_ezzoom_index>
+        <reference name="content">
+            <block type="ezzoom/adminhtml_page" name="ezzoom" />
+        </reference>
+    </ezzoom_adminhtml_ezzoom_index>
+    
+    <adminhtml_cache_index>
+        <reference name="content">
+            <reference name="cache.additional">
+               <action method="setTemplate"><template>ezzoom/additional.phtml</template></action>
+            </reference>
+        </reference>
+    </adminhtml_cache_index>
+    
+</layout>

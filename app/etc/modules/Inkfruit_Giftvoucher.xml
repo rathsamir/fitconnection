@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inkfruit_Giftvoucher>
+            <active>true</active>
+            <codePool>local</codePool>
+            <self_name>PRD Gift voucher module</self_name>
+            <priority>10080</priority>
+        </Inkfruit_Giftvoucher>
+    </modules>
+</config>

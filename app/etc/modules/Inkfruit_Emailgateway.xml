@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Inkfruit_Emailgateway>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Inkfruit_Emailgateway>
+	</modules>
+</config>

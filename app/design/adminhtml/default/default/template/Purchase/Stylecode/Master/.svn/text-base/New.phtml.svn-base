@@ -1,0 +1,126 @@
+<div class="entry-edit">
+
+    <div class="content-header">
+        <table cellspacing="0" class="grid-header">
+            <tr>
+                <td><h3><?php echo $this->__('New Style Code') ?></h3></td>
+                <td align="right">
+                    <button onclick="document.location.href='<?php echo $this->getBackUrl() ?>'" class="scalable back" type="button"><span><?php echo $this->__('Back') ?></span></button>
+                    <button onclick="document.getElementById('edit_form').submit();" class="scalable save" type="button"><span><?php echo $this->__('Save') ?></span></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <form id="edit_form" method="POST" name="edit_form" action="<?php echo $this->getUrl('*/*/Create') ?>">
+        <input id="form_key" name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+        <div class="entry-edit">
+
+            <fieldset id="my-fieldset">
+                <table cellspacing="0" class="form-list">
+                    <tr>
+                        <td class="label"><?php echo $this->__('Style Code'); ?></td>
+                        <td class="input-ele"><input class="required-entry input-text" type="text"  name="stylecode_name" id="stylecode_name"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="label"><?php echo $this->__('Category Level 1'); ?></td>
+                        <td class="input-ele"><?php echo $this->getLeve1Names(); ?></td>
+
+                    </tr>
+                    <tr>
+                        <td class="label"><?php echo $this->__('Category Level 2'); ?></td>
+                        <td><select  style="width: 120px;" id="stylecatlevel2_id" name="stylecatlevel2_id">
+                                <option class="required-entry input-text" value="" selected="selected"> </option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><?php echo $this->__('Category Level 3'); ?></td>
+                        <td><select  style="width: 120px;" id="stylecatlevel3_id" name="stylecatlevel3_id">
+                                <option class="required-entry input-text" value="" selected="selected"> </option>
+                            </select></td>
+                    </tr>
+                </table>
+
+            </fieldset>
+
+        </div>
+    </form>
+
+</div>
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form');
+
+    $('stylecatlevel1_id').observe('change', AjaxFunction);
+    function AjaxFunction(event){
+        //alert(this.value);
+        if(this.value){
+            var stylecatlevel1id=this.value;
+            var url='<?php echo $this->getCategoriesLevel1ChooseUrl() ?>';
+            new Ajax.Request(url, {
+                method: 'get',
+                parameters: {'stylecatlevel1_id':stylecatlevel1id},
+                onSuccess: function(transport) {
+                    var resSelect = "";
+                    try{
+                        
+                        var  categoryInfo = eval('('+transport.responseText+')');
+                        //alert(document.getElementById("stylecatlevel2_id").value);
+                       
+                        var length=categoryInfo.content.length;
+                        resSelect += "<select>";
+                        resSelect += "<option value='0' selected='selected'>select</option>";
+                        for(var i = 0; i < length; i++) {
+                            resSelect += "<option value='"+categoryInfo.content[i].stylecatlevel2_id+"'>"+categoryInfo.content[i].stylecatlevel2_name+"</option>";
+                        }
+                        resSelect += "</select>";
+                        document.getElementById('stylecatlevel2_id').innerHTML = resSelect;
+                       
+                               
+                    }catch(e){
+                        
+                    }
+                }
+            });
+        }
+   
+    }
+    $('stylecatlevel2_id').observe('change', AjaxrequestFunction);
+    function AjaxrequestFunction(event){
+        if(this.value){
+            var stylecatlevel2id=this.value;
+            var url='<?php echo $this->getCategoriesLevel2ChooseUrl() ?>';
+            new Ajax.Request(url, {
+                method: 'get',
+                parameters: {'stylecatlevel2_id':stylecatlevel2id},
+                onSuccess: function(transport) {
+                    var resSelect = "";
+                    try{
+                        
+                        var  categoryInfo = eval('('+transport.responseText+')');
+                        //alert(document.getElementById("stylecatlevel2_id").value);
+                       
+                        var length=categoryInfo.content.length;
+                        resSelect += "<select>";
+                        resSelect += "<option value='0' selected='selected'>select</option>";
+                        for(var i = 0; i < length; i++) {
+                            resSelect += "<option value='"+categoryInfo.content[i].stylecatlevel3_id+"'>"+categoryInfo.content[i].stylecatlevel3_name+"</option>";
+                        }
+                        resSelect += "</select>";
+                        document.getElementById('stylecatlevel3_id').innerHTML = resSelect;
+                        //alert(categoryInfo.content[0].stylecatlevel2_name);
+                        // alert(categoryInfo.content.stylecatlevel2_id);
+                        // alert(categoryInfo.content.stylecatlevel2_name);
+                                
+                               
+                    }catch(e){
+                        
+                    }
+                }
+            });
+        }
+   
+    }
+
+    //]]>
+</script>

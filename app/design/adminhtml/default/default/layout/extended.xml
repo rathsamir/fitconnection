@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- ce fichier doit se trouver dans adminhtml/default/default sinon pas pris en compte.. -->
+<layout version="0.1.0">
+    <extended_purchase_chapterhead_list>
+        <reference name="content">
+            <block type="Extended/Purchase_Chapterhead_List" name="chapterheadlist" template="Extended/Chapterhead/Grid.phtml" />
+        </reference>
+    </extended_purchase_chapterhead_list>
+    <extended_purchase_chapterhead_edit>
+        <reference name="content">
+            <block type="Extended/Purchase_Chapterhead_Edit" name="chapterheadedit" template="Extended/Chapterhead/Edit.phtml" />
+        </reference>
+    </extended_purchase_chapterhead_edit>
+    <extended_purchase_chapterhead_new>
+        <reference name="content">
+            <block type="Extended/Purchase_Chapterhead_New" name="chapterheadnew" template="Extended/Chapterhead/New.phtml" />
+        </reference>
+    </extended_purchase_chapterhead_new>
+
+</layout>

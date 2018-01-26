@@ -1,0 +1,9 @@
+a:5:{i:0;s:183:"Error in file: "G:\xampp\htdocs\samir\app\code\local\MDN\Extended\sql\mdn_extended_setup\mysql4-upgrade-0.4.4-0.4.5.php" - Table "erp_stock_transfer_production_product" already exists";i:1;s:927:"#0 G:\xampp\htdocs\samir\app\code\core\Mage\Core\Model\Resource\Setup.php(645): Mage::exception('Mage_Core', 'Error in file: ...')
+#1 G:\xampp\htdocs\samir\app\code\core\Mage\Core\Model\Resource\Setup.php(422): Mage_Core_Model_Resource_Setup->_modifyResourceDb('upgrade', false, '0.5.1')
+#2 G:\xampp\htdocs\samir\app\code\core\Mage\Core\Model\Resource\Setup.php(327): Mage_Core_Model_Resource_Setup->_installResourceDb('0.5.1')
+#3 G:\xampp\htdocs\samir\app\code\core\Mage\Core\Model\Resource\Setup.php(235): Mage_Core_Model_Resource_Setup->applyUpdates()
+#4 G:\xampp\htdocs\samir\app\code\core\Mage\Core\Model\App.php(417): Mage_Core_Model_Resource_Setup::applyAllUpdates()
+#5 G:\xampp\htdocs\samir\app\code\core\Mage\Core\Model\App.php(343): Mage_Core_Model_App->_initModules()
+#6 G:\xampp\htdocs\samir\app\Mage.php(683): Mage_Core_Model_App->run(Array)
+#7 G:\xampp\htdocs\samir\index.php(87): Mage::run('', 'store')
+#8 {main}";s:3:"url";s:42:"/samir/index.php/install/wizard/installDb/";s:11:"script_name";s:16:"/samir/index.php";s:4:"skin";s:7:"default";}

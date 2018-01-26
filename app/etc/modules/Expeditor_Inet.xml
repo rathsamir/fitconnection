@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Expeditor Inet module
+ *
+ * @category   Expeditor
+ * @package    Expeditor_Inet
+ * @copyright  Copyright (c) 2009 Jibé <contact via Magento Connect module page>
+ * @license    http://www.opensource.org/licenses/gpl-3.0.html GNU General Public License version 3
+ */
+-->
+<config>
+    <modules>
+        <Expeditor_Inet>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Expeditor_Inet>
+    </modules>
+</config>

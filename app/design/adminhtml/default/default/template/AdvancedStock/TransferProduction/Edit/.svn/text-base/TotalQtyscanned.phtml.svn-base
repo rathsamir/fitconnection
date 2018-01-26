@@ -1,0 +1,15 @@
+<div class="entry-edit">
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Total Scanned Quantity:')?></h3>
+                <input type="text" readonly id="total_numberof_scanned_qty">
+                    <script type="text/javascript">                       
+                        if(document.getElementById('total_numberof_scanned_qty').value == '')
+                        document.getElementById('total_numberof_scanned_qty').value = <?php echo $this->getAddproductsData()?>;                        
+                    </script>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>

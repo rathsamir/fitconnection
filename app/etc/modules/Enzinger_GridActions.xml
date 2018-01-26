@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Enzinger_GridActions>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Enzinger_GridActions>
+    </modules>
+</config> 

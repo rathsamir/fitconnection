@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <interview_adminhtml_interview_index>
+        <reference name="content">
+            <block type="interview/adminhtml_interview" name="interview" />
+        </reference>
+    </interview_adminhtml_interview_index>
+</layout>

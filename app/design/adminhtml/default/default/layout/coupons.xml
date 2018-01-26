@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <coupons_adminhtml_list_index>
+        <reference name="content">
+            <block type="coupons/adminhtml_list" name="list" />
+        </reference>
+    </coupons_adminhtml_list_index>
+</layout>

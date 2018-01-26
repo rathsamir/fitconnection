@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	
+    <createcontest_adminhtml_createcontest_index>
+        <reference name="content">
+            <block type="createcontest/adminhtml_createcontest" name="createcontest" />
+        </reference>        
+    </createcontest_adminhtml_createcontest_index>
+</layout>

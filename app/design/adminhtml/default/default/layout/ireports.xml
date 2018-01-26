@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<layout>
+
+	<ireports_adminhtml_stock_closing>
+		<reference name="content">
+			<block type="ireports/stock_closing" template="report/grid/container.phtml" name="stock.grid">
+				<!--
+                <block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+                    <action method="setStoreVarName"><var_name>store_ids</var_name></action>
+                </block> -->
+                <block type="ireports/stock_closing_form" name="grid.filter.form">
+                    
+                </block>
+            </block>
+	    </reference>       
+	</ireports_adminhtml_stock_closing>
+
+    <ireports_adminhtml_stock_current>
+        <reference name="content">
+            <block type="ireports/stock_current" template="report/grid/container.phtml" name="cstock.grid">
+                <block type="ireports/stock_current_form" name="grid.filter.form"></block>
+            </block>
+        </reference>       
+    </ireports_adminhtml_stock_current>
+
+
+    <ireports_adminhtml_stock_onlinetransferinvoice>
+        <reference name="content">
+            <block type="ireports/invoice_transfer" template="report/grid/container.phtml" name="invoice.grid">
+                <!-- <block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+                    <action method="setStoreVarName"><var_name>store_ids</var_name></action>
+                </block>  -->
+                <block type="ireports/invoice_transfer_form" name="grid.filter.form">
+
+                </block>
+            </block>
+        </reference>       
+    </ireports_adminhtml_stock_onlinetransferinvoice>
+
+
+	<ireports_adminhtml_stock_transfer>
+		<reference name="content">
+			<block type="ireports/transfer_transfer" template="report/grid/container.phtml" name="transfer.grid">
+                <!-- <block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+                    <action method="setStoreVarName"><var_name>store_ids</var_name></action>
+                </block>  -->
+                <block type="ireports/transfer_transfer_form" name="grid.filter.form">
+
+                </block>
+            </block>
+	    </reference>       
+	</ireports_adminhtml_stock_transfer>
+
+
+	<ireports_adminhtml_po_poexcise>
+		<reference name="content">
+			<block type="ireports/po_excise" template="report/grid/container.phtml" name="po.grid">
+            <!--     <block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+                    <action method="setStoreVarName"><var_name>store_ids</var_name></action>
+                </block>  -->
+                <block type="ireports/po_excise_form" name="grid.filter.form">
+
+                </block>
+            </block>
+	    </reference>       
+	</ireports_adminhtml_po_poexcise>
+
+
+	<ireports_adminhtml_production_transfer>
+		<reference name="content">
+			<block type="ireports/production_transfer" template="report/grid/container.phtml" name="po.grid">
+            <!--     <block type="adminhtml/store_switcher" template="report/store/switcher/enhanced.phtml" name="store.switcher">
+                    <action method="setStoreVarName"><var_name>store_ids</var_name></action>
+                </block>  -->
+                <block type="ireports/production_transfer_form" name="grid.filter.form">
+
+                </block>
+            </block>
+	    </reference>       
+	</ireports_adminhtml_production_transfer>
+
+
+	
+</layout>

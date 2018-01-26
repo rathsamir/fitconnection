@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <asyncnewsletter_adminhtml_subscriberlistdetails_setup_index>
+        <reference name="content">
+            <block type="asyncnewsletter/adminhtml_subscriberlistdetails_setup" name="setup"/>
+        </reference>
+    </asyncnewsletter_adminhtml_subscriberlistdetails_setup_index>
+    <asyncnewsletter_adminhtml_subscriberlistdetails_setup_edit>
+        <reference name="js">
+            <block type="asyncnewsletter/adminhtml_subscriberlistdetails_setup_edit" name="setup_edit"/>
+        </reference>
+    </asyncnewsletter_adminhtml_subscriberlistdetails_setup_edit> 
+    
+<!--    <asyncnewsletter_adminhtml_subscriberlistdetails_example_index>
+        <reference name="content">
+            <block type="asyncnewsletter/adminhtml_example" name="example"/>
+        </reference>
+    </asyncnewsletter_adminhtml_subscriberlistdetails_example_index>
+    <asyncnewsletter_adminhtml_subscriberlistdetails_example_edit>
+        <reference name="js">
+            <block type="asyncnewsletter/adminhtml_example_edit" name="example_edit"/>
+        </reference>
+    </asyncnewsletter_adminhtml_subscriberlistdetails_example_edit> -->
+</layout>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <customerquery_adminhtml_queries_index>
+        <reference name="content">
+            <block type="customerquery/adminhtml_queries" name="queries" />
+        </reference>
+    </customerquery_adminhtml_queries_index>
+</layout>

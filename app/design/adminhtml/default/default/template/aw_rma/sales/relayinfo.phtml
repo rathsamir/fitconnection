@@ -1,0 +1,13 @@
+<?php
+/**
+ * Paasing the information of the old order
+ */
+?>
+
+<input type="hidden" id="old-order-id" name="old_order_id" value="<?php echo $this->getOldOrderId() ?>"/>
+<input type="hidden" id="rma-id" name="rma_id" value="<?php echo $this->getRmaId() ?>"/>
+<?php if($this->isReplacement()) :   ?>
+    <input type="hidden" id="replaced" name="replaced" value="<?php echo $this->isReplacement() ?>"/>
+<?php elseif($this->isCreditmemo()) : ?>
+    <input type="hidden" id="refunded" name="refunded" value="<?php echo $this->isCreditmemo() ?>"/>
+<?php endif; ?>

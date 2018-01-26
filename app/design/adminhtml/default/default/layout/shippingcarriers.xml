@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <shippingcarriers_adminhtml_shippingcarriers_shipmentreport>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_shipment/shipment" name="shipment_item" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_shipmentreport>
+    <shippingcarriers_adminhtml_shippingcarriers_pickupreport>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_pickup/pickup" name="pickup" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_pickupreport>
+    <shippingcarriers_adminhtml_shippingcarriers_carriers>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_carriers" name="carriers" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_carriers>
+    <shippingcarriers_adminhtml_shipmentstatusmap_status>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_statusmap" name="statusmap" />
+        </reference>
+    </shippingcarriers_adminhtml_shipmentstatusmap_status>
+    <!--<shippingcarriers_adminhtml_shippingcarriers_quickinvoice>
+        <update handle="shippingcarriers_quickinvoice_quickinvoice"/>
+        <reference name="content">
+            <block type="adminhtml/template" name="quickinvoice" template="shippingcarriers/quickinvoice.phtml" />            
+        </reference>        
+    </shippingcarriers_adminhtml_shippingcarriers_quickinvoice>-->
+    <shippingcarriers_adminhtml_shippingcarriers_financereport>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_finance/finance" name="finance" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_financereport>
+    <shippingcarriers_adminhtml_shippingcarriers_creditmemoreport>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_creditmemo/creditmemo" name="creditmemo" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_creditmemoreport>
+    <shippingcarriers_adminhtml_shippingcarriers_redispatchreport>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_redispatch/redispatch" name="redispatch" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_redispatchreport>
+    <shippingcarriers_adminhtml_shippingcarriers_replacementreport>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_replacement/replacement" name="replacement" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_replacementreport>
+    <shippingcarriers_adminhtml_shippingcarriers_rmareport>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_rma/rma" name="rma" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_rmareport>
+    <shippingcarriers_adminhtml_shippingcarriers_refundreport>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_refund/refund" name="refund" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_refundreport>
+    <shippingcarriers_adminhtml_shippingcarriers_rtoreport>
+        <reference name="content">
+            <block type="shippingcarriers/adminhtml_rto/rto" name="rto" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_rtoreport>
+   <!-- <shippingcarriers_adminhtml_shippingcarriers_verifyitems>
+        <update handle="shippingcarriers_quickinvoice_quickinvoice"/>
+        <reference name="content">
+            <block type="adminhtml/template" name="verifyitems" template="shippingcarriers/verifyitems.phtml" />
+        </reference>
+    </shippingcarriers_adminhtml_shippingcarriers_verifyitems>-->
+</layout>

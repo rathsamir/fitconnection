@@ -1,0 +1,62 @@
+<div class="entry-edit">
+            
+	    <div class="entry-edit-head"> 
+		    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Payment Term'); ?></h4> 
+	    </div>
+	    
+		<fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('First Payment'); ?></td>
+                    <td class="input-ele">
+                        <input type="hidden" id="popaymentterm_id_1" name="popaymentterm_id[]" value="<?php echo $this->getpaymentTermValue(0,"paymenttermid"); ?>" />
+                    	<input size="8" type="text" name="popaymentterm_percent_payment[]" id="popaymentterm_percent_payment_1" value="<?php echo $this->getpaymentTermValue(0,"percent"); ?>">
+                    	<?php echo $this->__('% as Advance'); ?>
+                        <input type="hidden" id="purterm_days_1" name="popaymentterm_daysafter_grn[]" value="-1" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Second Payment'); ?></td>
+                    <td class="input-ele">
+                        <input type="hidden" id="popaymentterm_id_2" name="popaymentterm_id[]" value="<?php echo $this->getpaymentTermValue(1,"paymenttermid"); ?>" />
+                        <input type="text" name="popaymentterm_percent_payment[]" id="popaymentterm_percent_payment_2" value="<?php echo $this->getpaymentTermValue(1,"percent"); ?>">
+                        <?php echo $this->__('% Payment'); ?>
+                        <input type="text" name="popaymentterm_daysafter_grn[]" id="popaymentterm_daysafter_grn_2" value="<?php echo $this->getpaymentTermValue(1,"days"); ?>">
+                        <?php echo $this->__('days after GRN'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Third Payment'); ?></td>
+                    <td class="input-ele">
+                        <input type="hidden" id="popaymentterm_id_3" name="popaymentterm_id[]" value="<?php echo $this->getpaymentTermValue(2,"paymenttermid"); ?>" />
+                        <input type="text" name="popaymentterm_percent_payment[]" id="popaymentterm_percent_payment_3" value="<?php echo $this->getpaymentTermValue(2,"percent"); ?>">
+                        <?php echo $this->__('% Payment'); ?>
+                        <input type="text" name="popaymentterm_daysafter_grn[]" id="popaymentterm_daysafter_grn_3" value="<?php echo $this->getpaymentTermValue(2,"days"); ?>">
+                        <?php echo $this->__('days after GRN'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Fourth Payment'); ?></td>
+                    <td class="input-ele">
+                        <input type="hidden" id="popaymentterm_id_4" name="popaymentterm_id[]" value="<?php echo $this->getpaymentTermValue(3,"paymenttermid"); ?>" />
+                        <input type="text" name="popaymentterm_percent_payment[]" id="popaymentterm_percent_payment_4" value="<?php echo $this->getpaymentTermValue(3,"percent"); ?>">
+                        <?php echo $this->__('% Payment'); ?>
+                        <input type="text" name="popaymentterm_daysafter_grn[]" id="popaymentterm_daysafter_grn_4" value="<?php echo $this->getpaymentTermValue(3,"days"); ?>">
+                        <?php echo $this->__('days after GRN'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Fifth Payment'); ?></td>
+                    <td class="input-ele">
+                        <input type="hidden" id="popaymentterm_id_5" name="popaymentterm_id[]" value="<?php echo $this->getpaymentTermValue(4,"paymenttermid"); ?>" />
+                        <input type="text" name="popaymentterm_percent_payment[]" id="popaymentterm_percent_payment_5" value="<?php echo $this->getpaymentTermValue(4,"percent"); ?>">
+                        <?php echo $this->__('% Payment'); ?>
+                        <input type="text" name="popaymentterm_daysafter_grn[]" id="popaymentterm_daysafter_grn_5" value="<?php echo $this->getpaymentTermValue(4,"days"); ?>">
+                        <?php echo $this->__('days after GRN'); ?>
+                    </td>
+                </tr>
+                
+            </table>
+        </fieldset>
+	    
+</div>

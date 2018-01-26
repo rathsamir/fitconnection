@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mage_Ccavenue>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Sales/>
+                <Mage_Payment/>
+            </depends>
+        </Mage_Ccavenue>
+    </modules>
+</config>

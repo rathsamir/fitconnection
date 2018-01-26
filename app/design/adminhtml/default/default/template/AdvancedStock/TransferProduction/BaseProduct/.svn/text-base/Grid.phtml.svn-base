@@ -1,0 +1,24 @@
+<div class="entry-edit">
+
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo$this->__('Production transfer - Base Products')?></h3></td>
+            <td align="right">
+                <button onclick="document.location.href='<?php echo $this->getNewUrl()?>'" class="scalable save" type="button"><span><?php echo $this->__('New')?></span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<?php echo $this->getGridParentHtml() ?>
+<script type="text/javascript">
+function sendValue(value)
+{
+    var parentId = 'base_product_<?php echo $this->getProdId(); ?>';
+    window.opener.updatebaseProductValue(parentId, value);
+    window.close();
+}
+</script>
+
+</div>

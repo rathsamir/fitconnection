@@ -1,0 +1,40 @@
+10
+
+dir
+6640
+svn://svn.inkfruit.com/inkfruit/trunk/src/magento/app/design/adminhtml/default/inkfruitadmin/template/Purchase/Stylecode
+svn://svn.inkfruit.com/inkfruit
+
+
+
+2013-01-14T11:10:00.518412Z
+6429
+samir
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+328653d6-7a1a-4464-97bf-f2850209353f
+
+CategoryLevel1
+dir
+
+CategoryLevel2
+dir
+
+CategoryLevel3
+dir
+
+Master
+dir
+
